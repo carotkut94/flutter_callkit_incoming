@@ -86,11 +86,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   getCurrentCall() async {
     //check current call from pushkit if possible
     var calls = await FlutterCallkitIncoming.activeCalls();
-    if (calls is List) {
-      if (calls.isNotEmpty) {
-        print('DATA: $calls');
-        this._currentUuid = calls[0]['id'];
-        return calls[0];
+    var callData = jsonDecode(calls);
+    if (callData is List) {
+      if (callData.isNotEmpty) {
+        print('DATA: $callData');
+        this._currentUuid = callData[0]['id'];
+        await FlutterCallkitIncoming.removeAllCalls();
+        return callData[0];
       } else {
         this._currentUuid = "";
         return null;

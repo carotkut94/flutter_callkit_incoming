@@ -1,35 +1,50 @@
 {
   "project_info": {
-    "project_number": "773665512065",
-    "firebase_url": "https://project-working-for-testing-default-rtdb.firebaseio.com",
-    "project_id": "project-working-for-testing",
-    "storage_bucket": "project-working-for-testing.appspot.com"
+    "project_number": "257241274606",
+    "firebase_url": "https://detektive-3e367-default-rtdb.firebaseio.com",
+    "project_id": "detektive-3e367",
+    "storage_bucket": "detektive-3e367.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:773665512065:android:5708a78385fe29101a8b80",
+        "mobilesdk_app_id": "1:257241274606:android:efce89a41887414f99fbff",
         "android_client_info": {
-          "package_name": "com.hiennv.testing"
+          "package_name": "com.death.detektive"
         }
       },
       "oauth_client": [
         {
-          "client_id": "773665512065-1shc4ufo4sfdt8v4lvmd0amhj1jqr3cl.apps.googleusercontent.com",
+          "client_id": "257241274606-3adlbef5jtdue9sc47d2oj1qbfm838gg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.death.detektive",
+            "certificate_hash": "486498194e8d60ca94ac5a87a9a45a81a342fd34"
+          }
+        },
+        {
+          "client_id": "257241274606-feesnliqs8aqna05v94vat03rtmhhsm1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBv5X-BDvO8km6lVG8gllj4bY6lJLDUguY"
+          "current_key": "AIzaSyC8UEkQR3KK737oDoaqqtzWHVGsm-5JNUY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "773665512065-1shc4ufo4sfdt8v4lvmd0amhj1jqr3cl.apps.googleusercontent.com",
+              "client_id": "257241274606-feesnliqs8aqna05v94vat03rtmhhsm1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "257241274606-kvarelbjji4honafvubbu8cut01loqkg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.github.cloudwebrtc.flutterCallkeepExample"
+              }
             }
           ]
         }
@@ -37,28 +52,115 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:773665512065:android:92f4f47a935afbf01a8b80",
+        "mobilesdk_app_id": "1:257241274606:android:b46818598fa5da2b99fbff",
         "android_client_info": {
-          "package_name": "com.scripturequest"
+          "package_name": "com.death.glasses"
         }
       },
       "oauth_client": [
         {
-          "client_id": "773665512065-1shc4ufo4sfdt8v4lvmd0amhj1jqr3cl.apps.googleusercontent.com",
+          "client_id": "257241274606-bj9d3dmhe8mqvs2lp3c4fl6jk1g9f9nd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.death.glasses",
+            "certificate_hash": "486498194e8d60ca94ac5a87a9a45a81a342fd34"
+          }
+        },
+        {
+          "client_id": "257241274606-feesnliqs8aqna05v94vat03rtmhhsm1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBv5X-BDvO8km6lVG8gllj4bY6lJLDUguY"
+          "current_key": "AIzaSyC8UEkQR3KK737oDoaqqtzWHVGsm-5JNUY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "773665512065-1shc4ufo4sfdt8v4lvmd0amhj1jqr3cl.apps.googleusercontent.com",
+              "client_id": "257241274606-feesnliqs8aqna05v94vat03rtmhhsm1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "257241274606-kvarelbjji4honafvubbu8cut01loqkg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.github.cloudwebrtc.flutterCallkeepExample"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257241274606:android:8329004bb393069c99fbff",
+        "android_client_info": {
+          "package_name": "com.github.cloudwebrtc.flutter_callkeep_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257241274606-feesnliqs8aqna05v94vat03rtmhhsm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8UEkQR3KK737oDoaqqtzWHVGsm-5JNUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257241274606-feesnliqs8aqna05v94vat03rtmhhsm1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "257241274606-kvarelbjji4honafvubbu8cut01loqkg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.github.cloudwebrtc.flutterCallkeepExample"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257241274606:android:e02e59d23fb74f5799fbff",
+        "android_client_info": {
+          "package_name": "com.hiennv.testing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257241274606-feesnliqs8aqna05v94vat03rtmhhsm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8UEkQR3KK737oDoaqqtzWHVGsm-5JNUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257241274606-feesnliqs8aqna05v94vat03rtmhhsm1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "257241274606-kvarelbjji4honafvubbu8cut01loqkg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.github.cloudwebrtc.flutterCallkeepExample"
+              }
             }
           ]
         }

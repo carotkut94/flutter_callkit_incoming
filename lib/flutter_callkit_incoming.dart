@@ -72,6 +72,13 @@ class FlutterCallkitIncoming {
     return await _channel.invokeMethod("activeCalls");
   }
 
+  /// Get active calls.
+  /// On iOS: return active calls from Callkit.
+  /// On Android: only return last call
+  static Future removeAllCalls() async {
+    return await _channel.invokeMethod("removeAllCalls");
+  }
+
   /// Get device push token VoIP.
   /// On iOS: return deviceToken for VoIP.
   /// On Android: return Empty

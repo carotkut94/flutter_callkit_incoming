@@ -2,6 +2,7 @@ package com.hiennv.flutter_callkit_incoming
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.google.gson.reflect.TypeToken
 
 
@@ -37,12 +38,13 @@ fun removeCall(context: Context?, data: Data) {
 }
 
 fun removeAllCalls(context: Context?) {
-    putString(context, "ACTIVE_CALLS", "[]")
+    Log.e("Clearing", "Logs")
     remove(context, "ACTIVE_CALLS")
 }
 
 fun getActiveCalls(context: Context?): String {
     val json = getString(context, "ACTIVE_CALLS", "[]")
+    Log.e("Pulling active calls", json.toString());
     val arrayData: ArrayList<Data> = Utils.getGsonInstance()
         .fromJson(json, object : TypeToken<ArrayList<Data>>() {}.type)
     return Utils.getGsonInstance().toJson(arrayData)
@@ -50,6 +52,7 @@ fun getActiveCalls(context: Context?): String {
 
 fun getDataActiveCalls(context: Context?): ArrayList<Data> {
     val json = getString(context, "ACTIVE_CALLS", "[]")
+    Log.e("Pulling active calls", json.toString());
     return Utils.getGsonInstance()
         .fromJson(json, object : TypeToken<ArrayList<Data>>() {}.type)
 }
