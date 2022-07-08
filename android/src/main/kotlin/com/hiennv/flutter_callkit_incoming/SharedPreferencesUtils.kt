@@ -40,7 +40,7 @@ fun removeCall(context: Context?, data: Data) {
 }
 
 fun removeAllCalls(context: Context?) {
-    Log.e("remove All call", "Call added $data")
+    Log.e("remove All call", "true")
     remove(context, "ACTIVE_CALLS")
 }
 
