@@ -17,6 +17,7 @@ private fun initInstance(context: Context) {
 
 
 fun addCall(context: Context?, data: Data, isAccepted: Boolean = false) {
+    Log.e("adding call", "Call added $data")
     val json = getString(context, "ACTIVE_CALLS", "[]")
     val arrayData: ArrayList<Data> = Utils.getGsonInstance()
         .fromJson(json, object : TypeToken<ArrayList<Data>>() {}.type)
@@ -30,6 +31,7 @@ fun addCall(context: Context?, data: Data, isAccepted: Boolean = false) {
 }
 
 fun removeCall(context: Context?, data: Data) {
+    Log.e("remove call", "Call added $data")
     val json = getString(context, "ACTIVE_CALLS", "[]")
     val arrayData: ArrayList<Data> = Utils.getGsonInstance()
         .fromJson(json, object : TypeToken<ArrayList<Data>>() {}.type)
@@ -38,13 +40,13 @@ fun removeCall(context: Context?, data: Data) {
 }
 
 fun removeAllCalls(context: Context?) {
-    Log.e("Clearing", "Logs")
+    Log.e("remove All call", "Call added $data")
     remove(context, "ACTIVE_CALLS")
 }
 
 fun getActiveCalls(context: Context?): String {
     val json = getString(context, "ACTIVE_CALLS", "[]")
-    Log.e("Pulling active calls", json.toString());
+    Log.e("Pulling active calls", json.toString())
     val arrayData: ArrayList<Data> = Utils.getGsonInstance()
         .fromJson(json, object : TypeToken<ArrayList<Data>>() {}.type)
     return Utils.getGsonInstance().toJson(arrayData)

@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:flutter_callkit_incoming_example/app_router.dart';
@@ -19,14 +21,18 @@ class HomePageState extends State<HomePage> {
   var _currentUuid;
   var textEvents = "";
 
+  var token = "";
+
   @override
   void initState() {
     super.initState();
     _uuid = Uuid();
     _currentUuid = "";
     textEvents = "";
+    token = "Loading token....";
     initCurrentCall();
     listenerEvent(onEvent);
+    getDevicePushTokenVoIP();
   }
 
   @override
@@ -90,12 +96,22 @@ class HomePageState extends State<HomePage> {
                 constraints: BoxConstraints(
                   minHeight: viewportConstraints.maxHeight,
                 ),
-                child: Text('$textEvents'),
+                child: Column(
+                  children: [
+                    SelectableText(token),
+                    Divider(),
+                    Text('$textEvents'),
+                  ],
+                )
               ),
             );
           } else {
-            return Center(
-              child: Text('No Event'),
+            return Column(
+              children: [
+                SelectableText(token),
+                Divider(),
+                Text('No Event'),
+              ],
             );
           }
         },
@@ -123,8 +139,8 @@ class HomePageState extends State<HomePage> {
       this._currentUuid = _uuid.v4();
       var params = <String, dynamic>{
         'id': _currentUuid,
-        'nameCaller': 'Hien Nguyen',
-        'appName': 'Callkit',
+        'nameCaller': 'Sidhant Rajora',
+        'appName': 'Sample',
         'avatar': 'https://i.pravatar.cc/100',
         'handle': '0123456789',
         'type': 0,
@@ -179,7 +195,7 @@ class HomePageState extends State<HomePage> {
     this._currentUuid = _uuid.v4();
     var params = <String, dynamic>{
       'id': this._currentUuid,
-      'nameCaller': 'Hien Nguyen',
+      'nameCaller': 'Sidhant Rajora',
       'handle': '0123456789',
       'type': 1,
       'extra': <String, dynamic>{'userId': '1a2b3c4d'},
@@ -198,9 +214,15 @@ class HomePageState extends State<HomePage> {
   }
 
   Future<void> getDevicePushTokenVoIP() async {
-    var devicePushTokenVoIP =
-        await FlutterCallkitIncoming.getDevicePushTokenVoIP();
-    print(devicePushTokenVoIP);
+    await Firebase.initializeApp();
+    var _firebaseMessaging = FirebaseMessaging.instance;
+    _firebaseMessaging.getToken().then((value) {
+      setState(() {
+        token = value ?? "";
+      });
+      print("Sidhant");
+      print(token);
+    });
   }
 
   Future<void> listenerEvent(Function? callback) async {
@@ -272,4 +294,5 @@ class HomePageState extends State<HomePage> {
       textEvents += "${event.toString()}\n";
     });
   }
+
 }

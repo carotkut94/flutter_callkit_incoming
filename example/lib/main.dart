@@ -16,8 +16,8 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 Future<void> showCallkitIncoming(String uuid) async {
   var params = <String, dynamic>{
     'id': uuid,
-    'nameCaller': 'Hien Nguyen',
-    'appName': 'Callkit',
+    'nameCaller': 'Sidhant Rajora',
+    'appName': 'Sample',
     'avatar': 'https://i.pravatar.cc/100',
     'handle': '0123456789',
     'type': 0,
@@ -70,6 +70,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   var _uuid;
   var _currentUuid;
+  var token = "";
 
   late final FirebaseMessaging _firebaseMessaging;
 
