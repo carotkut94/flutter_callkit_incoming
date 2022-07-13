@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="src/main/res/layout/activity_callkit_incoming.xml" value="0.35190217391304346" />
+        <entry key="src/main/res/layout/layout_custom_notification.xml" value="0.35190217391304346" />
       </map>
     </option>
   </component>

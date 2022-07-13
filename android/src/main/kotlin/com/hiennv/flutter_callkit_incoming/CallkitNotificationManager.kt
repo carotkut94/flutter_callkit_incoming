@@ -130,9 +130,10 @@ class CallkitNotificationManager(private val context: Context) {
                     R.id.tvNumber,
                     data.getString(EXTRA_CALLKIT_HANDLE, "")
             )
+            val declineIntent = getDeclineWithOpenActivity(notificationId, data)
             notificationViews?.setOnClickPendingIntent(
                     R.id.llDecline,
-                    getDeclinePendingIntent(notificationId, data)
+                    declineIntent
             )
             val textDecline = data.getString(EXTRA_CALLKIT_TEXT_DECLINE, "")
             notificationViews?.setTextViewText(
@@ -175,7 +176,7 @@ class CallkitNotificationManager(private val context: Context) {
             val declineAction: NotificationCompat.Action = NotificationCompat.Action.Builder(
                     R.drawable.ic_decline,
                     if (TextUtils.isEmpty(textDecline)) context.getString(R.string.text_decline) else textDecline,
-                    getDeclinePendingIntent(notificationId, data)
+                    getDeclineWithOpenActivity(notificationId, data)
             ).build()
             notificationBuilder.addAction(declineAction)
             val textAccept = data.getString(EXTRA_CALLKIT_TEXT_ACCEPT, "")
@@ -391,6 +392,28 @@ class CallkitNotificationManager(private val context: Context) {
                 timeOutIntent,
                 getFlagPendingIntent()
         )
+    }
+
+    private fun getDeclineWithOpenActivity(id: Int, data: Bundle): PendingIntent {
+        val intent = context.packageManager.getLaunchIntentForPackage(context.packageName)?.cloneFilter()
+        intent?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        if (intent != null) {
+            val declineIntent = TransparentActivityDecline.getIntentDecline(context, data)
+            return PendingIntent.getActivities(
+                    context,
+                    id,
+                    arrayOf(intent, declineIntent),
+                    getFlagPendingIntent()
+            )
+        } else {
+            val declineIntent = CallkitIncomingBroadcastReceiver.getIntentDecline(context, data)
+            return PendingIntent.getBroadcast(
+                    context,
+                    id,
+                    declineIntent,
+                    getFlagPendingIntent()
+            )
+        }
     }
 
     private fun getCallbackPendingIntent(id: Int, data: Bundle): PendingIntent {

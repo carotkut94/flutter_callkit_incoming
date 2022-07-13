@@ -297,9 +297,28 @@ class CallkitIncomingActivity : Activity() {
 
     private fun onDeclineClick() {
         val data = intent.extras?.getBundle(EXTRA_CALLKIT_INCOMING_DATA)
-        val intent =
-            CallkitIncomingBroadcastReceiver.getIntentDecline(this@CallkitIncomingActivity, data)
-        sendBroadcast(intent)
+        val intent = packageManager.getLaunchIntentForPackage(packageName)?.cloneFilter()
+        if (isTaskRoot) {
+            intent?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        } else {
+            intent?.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        }
+        if (intent != null) {
+            val intentTransparent = TransparentActivityDecline.getIntentDecline(this@CallkitIncomingActivity, data)
+            startActivities(arrayOf(intent, intentTransparent))
+        } else {
+            val acceptIntent = CallkitIncomingBroadcastReceiver.getIntentDecline(this@CallkitIncomingActivity, data)
+            sendBroadcast(acceptIntent)
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+            keyguardManager.requestDismissKeyguard(this, null)
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            finishAndRemoveTask()
+        } else {
+            finish()
+        }
     }
 
     private fun getPicassoInstance(context: Context, headers: HashMap<String, Any?>): Picasso {

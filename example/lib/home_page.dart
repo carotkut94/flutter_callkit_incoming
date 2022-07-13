@@ -30,7 +30,7 @@ class HomePageState extends State<HomePage> {
     _currentUuid = "";
     textEvents = "";
     token = "Loading token....";
-    initCurrentCall();
+    //initCurrentCall();
     listenerEvent(onEvent);
     getDevicePushTokenVoIP();
   }
@@ -119,21 +119,6 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-  initCurrentCall() async {
-    //check current call from pushkit if possible
-    var calls = await FlutterCallkitIncoming.activeCalls();
-    if (calls is List) {
-      if (calls.isNotEmpty) {
-        print('DATA: $calls');
-        this._currentUuid = calls[0]['id'];
-        return calls[0];
-      } else {
-        this._currentUuid = "";
-        return null;
-      }
-    }
-  }
-
   Future<void> makeFakeCallInComing() async {
     await Future.delayed(const Duration(seconds: 10), () async {
       this._currentUuid = _uuid.v4();
@@ -186,9 +171,9 @@ class HomePageState extends State<HomePage> {
   }
 
   Future<void> endCurrentCall() async {
-    initCurrentCall();
-    var params = <String, dynamic>{'id': this._currentUuid};
-    await FlutterCallkitIncoming.endCall(params);
+    //initCurrentCall();
+    //var params = <String, dynamic>{'id': this._currentUuid};
+    //await FlutterCallkitIncoming.endCall(params);
   }
 
   Future<void> startOutGoingCall() async {

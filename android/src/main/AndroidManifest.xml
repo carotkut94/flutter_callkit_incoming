@@ -26,6 +26,10 @@
             android:exported="false"
             android:theme="@style/TranslucentTheme"
             android:name="com.hiennv.flutter_callkit_incoming.TransparentActivity"/>
+        <activity
+            android:exported="false"
+            android:theme="@style/TranslucentTheme"
+            android:name="com.hiennv.flutter_callkit_incoming.TransparentActivityDecline"/>
 
         <receiver
             android:name="com.hiennv.flutter_callkit_incoming.CallkitIncomingBroadcastReceiver"

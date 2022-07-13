@@ -28,6 +28,15 @@ class TransparentActivity : Activity() {
             return intent
         }
 
+        fun getIntentDecline(context: Context, data: Bundle?): Intent {
+            val declineIntent = Intent(context, TransparentActivity::class.java)
+            declineIntent.putExtra("data", data)
+            declineIntent.putExtra("type", "DECLINE")
+            declineIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            declineIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            return declineIntent
+        }
+
     }
 
 
@@ -48,6 +57,11 @@ class TransparentActivity : Activity() {
                 val data = intent.getBundleExtra("data")
                 val acceptIntent = CallkitIncomingBroadcastReceiver.getIntentCallback(this@TransparentActivity, data)
                 sendBroadcast(acceptIntent)
+            }
+            "DECLINE" -> {
+                val data = intent.getBundleExtra("data")
+                val declineIntent = CallkitIncomingBroadcastReceiver.getIntentDecline(this@TransparentActivity, data)
+                sendBroadcast(declineIntent)
             }
             else -> { // Note the block
                 val data = intent.getBundleExtra("data")
