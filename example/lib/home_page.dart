@@ -33,6 +33,14 @@ class HomePageState extends State<HomePage> {
     //initCurrentCall();
     listenerEvent(onEvent);
     getDevicePushTokenVoIP();
+    checkForDeclinedCalls();
+  }
+
+  Future<void> checkForDeclinedCalls() async {
+    var data = await FlutterCallkitIncoming.declinedCalls();
+    print("Declined calls");
+    var decoded = jsonDecode(data);
+    print(decoded);
   }
 
   @override
@@ -230,6 +238,7 @@ class HomePageState extends State<HomePage> {
             break;
           case CallEvent.ACTION_CALL_DECLINE:
             // TODO: declined an incoming call
+            FlutterCallkitIncoming.clearDeclinedCalls();
             await requestHttp("ACTION_CALL_DECLINE_FROM_DART");
             break;
           case CallEvent.ACTION_CALL_ENDED:

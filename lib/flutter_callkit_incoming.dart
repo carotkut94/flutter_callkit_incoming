@@ -72,6 +72,14 @@ class FlutterCallkitIncoming {
     return await _channel.invokeMethod("activeCalls");
   }
 
+  static Future declinedCalls() async {
+    return await _channel.invokeMethod("declinedCalled");
+  }
+
+  static Future clearDeclinedCalls() async {
+    return await _channel.invokeMethod("clearDeclinedCalls");
+  }
+
   /// Get active calls.
   /// On iOS: return active calls from Callkit.
   /// On Android: only return last call
