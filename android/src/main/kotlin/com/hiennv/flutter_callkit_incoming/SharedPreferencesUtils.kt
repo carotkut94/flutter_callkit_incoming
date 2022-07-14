@@ -39,7 +39,9 @@ fun declineCall(context: Context?, data: Data) {
 fun getDeclinedCalls(context: Context?): String? {
     Log.e("declined call", "getting")
     val json = getString(context, "DECLINED_CALL", "")
-    return Utils.getGsonInstance().toJson(json)
+    val mappedData = Utils.getGsonInstance()
+            .fromJson(json, Data::class.java)
+    return Utils.getGsonInstance().toJson(mappedData)
 }
 
 fun removeDeclinedCalls(context: Context?) {
