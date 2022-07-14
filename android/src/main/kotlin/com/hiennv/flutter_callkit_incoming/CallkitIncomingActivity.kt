@@ -258,7 +258,7 @@ class CallkitIncomingActivity : Activity() {
             onAcceptClick()
         }
         ivDeclineCall.setOnClickListener {
-            onDeclineClick()
+            onDecline()
         }
     }
 
@@ -295,7 +295,7 @@ class CallkitIncomingActivity : Activity() {
         }
     }
 
-    private fun onDeclineClick() {
+    private fun onDecline() {
         val data = intent.extras?.getBundle(EXTRA_CALLKIT_INCOMING_DATA)
         val intent = packageManager.getLaunchIntentForPackage(packageName)?.cloneFilter()
         if (isTaskRoot) {
