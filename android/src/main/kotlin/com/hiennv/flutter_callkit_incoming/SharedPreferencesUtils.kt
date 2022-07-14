@@ -30,6 +30,23 @@ fun addCall(context: Context?, data: Data, isAccepted: Boolean = false) {
     putString(context, "ACTIVE_CALLS", Utils.getGsonInstance().toJson(arrayData))
 }
 
+fun declineCall(context: Context?, data: Data) {
+    Log.e("adding decline call", "Call added $data")
+    putString(context, "DECLINED_CALL", Utils.getGsonInstance().toJson(data))
+}
+
+
+fun getDeclinedCalls(context: Context?): String? {
+    Log.e("declined call", "getting")
+    val json = getString(context, "DECLINED_CALL", "")
+    return Utils.getGsonInstance().toJson(json)
+}
+
+fun removeDeclinedCalls(context: Context?) {
+    Log.e("remove declined call", "true")
+    remove(context, "DECLINED_CALL")
+}
+
 fun removeCall(context: Context?, data: Data) {
     Log.e("remove call", "Call added $data")
     val json = getString(context, "ACTIVE_CALLS", "[]")

@@ -134,10 +134,10 @@ class CallkitIncomingBroadcastReceiver : BroadcastReceiver() {
             }
             ACTION_CALL_DECLINE -> {
                 try {
+                    declineCall(context, Data.fromBundle(data))
                     sendEventFlutter(ACTION_CALL_DECLINE, data)
                     context.stopService(Intent(context, CallkitSoundPlayerService::class.java))
                     callkitNotificationManager.clearIncomingNotification(data)
-                    removeCall(context, Data.fromBundle(data))
                 } catch (error: Exception) {
                     error.printStackTrace()
                 }
