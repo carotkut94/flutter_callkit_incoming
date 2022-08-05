@@ -10,7 +10,6 @@ import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print("Handling a background message: ${message.messageId}");
-  showCallkitIncoming(Uuid().v4());
 }
 
 Future<void> showCallkitIncoming(String uuid) async {
@@ -96,7 +95,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       print(
           'Message title: ${message.notification?.title}, body: ${message.notification?.body}, data: ${message.data}');
       this._currentUuid = _uuid.v4();
-      showCallkitIncoming(this._currentUuid);
+      if (message.data['type'] == 'startcall') {
+        showCallkitIncoming(this._currentUuid);
+      }else{
+        FlutterCallkitIncoming.clearNotification();
+      }
     });
     _firebaseMessaging.getToken().then((token) {
       print('Device Token FCM: $token');

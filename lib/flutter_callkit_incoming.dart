@@ -87,6 +87,11 @@ class FlutterCallkitIncoming {
     return await _channel.invokeMethod("removeAllCalls");
   }
 
+
+  static Future clearNotification() async {
+    return await _channel.invokeMethod("callEndedBeforePickup");
+  }
+
   /// Get device push token VoIP.
   /// On iOS: return deviceToken for VoIP.
   /// On Android: return Empty
