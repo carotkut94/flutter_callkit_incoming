@@ -87,6 +87,19 @@ class FlutterCallkitIncomingPlugin : FlutterPlugin, MethodCallHandler, ActivityA
         )
     }
 
+
+    public fun clearCalls(data: Data) {
+        data.from = "notification"
+        callkitNotificationManager?.clearCalls()
+        //send BroadcastReceiver
+        context?.sendBroadcast(
+            CallkitIncomingBroadcastReceiver.getIntentRemoveCalls(
+                requireNotNull(context),
+                data.toBundle()
+            )
+        )
+    }
+
     public fun showMissCallNotification(data: Data) {
         callkitNotificationManager?.showIncomingNotification(data.toBundle())
     }
@@ -200,6 +213,18 @@ class FlutterCallkitIncomingPlugin : FlutterPlugin, MethodCallHandler, ActivityA
                 }
                 "removeAllCalls" -> {
                     removeAllCalls(context)
+                }
+                "callEndedBeforePickup" -> {
+                    val data = Data(call.arguments()?: HashMap<String, Any?>())
+                    data.from = "notification"
+                    //send BroadcastReceiver
+                    context?.sendBroadcast(
+                            CallkitIncomingBroadcastReceiver.getIntentRemoveCalls(
+                                    requireNotNull(context),
+                                    data.toBundle()
+                            )
+                    )
+                    result.success("OK")
                 }
             }
         } catch (error: Exception) {

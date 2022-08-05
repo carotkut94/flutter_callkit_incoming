@@ -24,6 +24,8 @@ class CallkitIncomingBroadcastReceiver : BroadcastReceiver() {
                 "com.hiennv.flutter_callkit_incoming.ACTION_CALL_TIMEOUT"
         const val ACTION_CALL_CALLBACK =
                 "com.hiennv.flutter_callkit_incoming.ACTION_CALL_CALLBACK"
+        const val ACTION_REMOVE_CALL =
+                "com.hiennv.flutter_callkit_incoming.ACTION_REMOVE_CALL"
 
 
         const val EXTRA_CALLKIT_INCOMING_DATA = "EXTRA_CALLKIT_INCOMING_DATA"
@@ -93,6 +95,12 @@ class CallkitIncomingBroadcastReceiver : BroadcastReceiver() {
                     action = ACTION_CALL_CALLBACK
                     putExtra(EXTRA_CALLKIT_INCOMING_DATA, data)
                 }
+
+        fun getIntentRemoveCalls(context: Context, data: Bundle?) =
+                Intent(context, CallkitIncomingBroadcastReceiver::class.java).apply {
+                    action = ACTION_REMOVE_CALL
+                    putExtra(EXTRA_CALLKIT_INCOMING_DATA, data)
+                }
     }
 
 
@@ -148,6 +156,14 @@ class CallkitIncomingBroadcastReceiver : BroadcastReceiver() {
                     context.stopService(Intent(context, CallkitSoundPlayerService::class.java))
                     callkitNotificationManager.clearIncomingNotification(data)
                     removeCall(context, Data.fromBundle(data))
+                } catch (error: Exception) {
+                    error.printStackTrace()
+                }
+            }
+            ACTION_REMOVE_CALL -> {
+                try {
+                    context.stopService(Intent(context, CallkitSoundPlayerService::class.java))
+                    callkitNotificationManager.clearCalls()
                 } catch (error: Exception) {
                     error.printStackTrace()
                 }

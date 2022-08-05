@@ -37,6 +37,16 @@ class TransparentActivity : Activity() {
             return declineIntent
         }
 
+
+        fun getIntentRemove(context: Context, data: Bundle?): Intent {
+            val declineIntent = Intent(context, TransparentActivity::class.java)
+            declineIntent.putExtra("data", data)
+            declineIntent.putExtra("type", "REMOVE")
+            declineIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            declineIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            return declineIntent
+        }
+
     }
 
 
@@ -62,6 +72,11 @@ class TransparentActivity : Activity() {
                 val data = intent.getBundleExtra("data")
                 val declineIntent = CallkitIncomingBroadcastReceiver.getIntentDecline(this@TransparentActivity, data)
                 sendBroadcast(declineIntent)
+            }
+            "REMOVE" -> {
+                val data = intent.getBundleExtra("data")
+                val removeIntent = CallkitIncomingBroadcastReceiver.getIntentRemoveCalls(this@TransparentActivity, data)
+                finish()
             }
             else -> { // Note the block
                 val data = intent.getBundleExtra("data")

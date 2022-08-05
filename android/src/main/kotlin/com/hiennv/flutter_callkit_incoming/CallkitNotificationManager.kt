@@ -76,6 +76,11 @@ class CallkitNotificationManager(private val context: Context) {
     }
 
 
+    fun clearCalls() {
+        removeAllCalls(context)
+        getNotificationManager().cancelAll()
+    }
+
     fun showIncomingNotification(data: Bundle) {
         data.putLong(EXTRA_TIME_START_CALL, System.currentTimeMillis())
 

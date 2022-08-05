@@ -63,6 +63,11 @@ fun removeAllCalls(context: Context?) {
     remove(context, "ACTIVE_CALLS")
 }
 
+fun callEndedBeforePickup(context: Context?) {
+    Log.e("remove All call", "true")
+    remove(context, "ACTIVE_CALLS")
+}
+
 fun getActiveCalls(context: Context?): String {
     val json = getString(context, "ACTIVE_CALLS", "[]")
     Log.e("Pulling active calls", json.toString())
