@@ -76,9 +76,12 @@ class CallkitNotificationManager(private val context: Context) {
     }
 
 
+
     fun clearCalls() {
         removeAllCalls(context)
         getNotificationManager().cancelAll()
+        val i = Intent(CallkitIncomingActivity.ACTION_ENDED_CALL_INCOMING)
+        context.sendBroadcast(i)
     }
 
     fun showIncomingNotification(data: Bundle) {
