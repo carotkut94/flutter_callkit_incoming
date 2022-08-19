@@ -80,8 +80,7 @@ class CallkitNotificationManager(private val context: Context) {
     fun clearCalls() {
         removeAllCalls(context)
         getNotificationManager().cancelAll()
-        val i = Intent(CallkitIncomingActivity.ACTION_ENDED_CALL_INCOMING)
-        context.sendBroadcast(i)
+        clearIncomingNotification(data = null)
     }
 
     fun showIncomingNotification(data: Bundle) {
@@ -301,10 +300,12 @@ class CallkitNotificationManager(private val context: Context) {
     }
 
 
-    fun clearIncomingNotification(data: Bundle) {
+    fun clearIncomingNotification(data: Bundle?) {
         context.sendBroadcast(CallkitIncomingActivity.getIntentEnded())
-        notificationId = data.getString(EXTRA_CALLKIT_ID, "callkit_incoming").hashCode()
-        getNotificationManager().cancel(notificationId)
+        if(data!=null) {
+            notificationId = data.getString(EXTRA_CALLKIT_ID, "callkit_incoming").hashCode()
+            getNotificationManager().cancel(notificationId)
+        }
     }
 
     fun clearMissCallNotification(data: Bundle) {
