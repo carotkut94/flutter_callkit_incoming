@@ -108,6 +108,20 @@ public class SwiftFlutterCallkitIncomingPlugin: NSObject, FlutterPlugin, CXProvi
         case "activeCalls":
             result(self.callManager?.activeCalls())
             break;
+        case "removeAllCalls":
+            self.callManager?.removeAllCalls()
+            result("OK")
+            break
+        case "callEndedBeforePickup":
+            self.callManager?.endCallAlls()
+            self.callManager?.removeAllCalls()
+            result("OK")
+            break
+        case "clearDeclinedCalls":
+            self.callManager?.endCallAlls()
+            self.callManager?.removeAllCalls()
+            result("OK")
+            break
         case "endAllCalls":
             self.callManager?.endCallAlls()
             result("OK")
